@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./write.module.css";
 import Image from "next/image";
 import "react-quill/dist/quill.bubble.css";
-import ReactQuill from "react-quill";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import {
@@ -18,6 +17,7 @@ import { app } from "@/utils/firebase";
 const Write = () => {
   const router = useRouter();
   const { status } = useSession();
+  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState(null);
   const [media, setMedia] = useState("");
